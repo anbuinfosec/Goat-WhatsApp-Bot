@@ -1,6 +1,6 @@
 const jsonDb = require("./json")
 const mongoDb = require("./mongodb")
-const sqliteDb = require("./sqlite")
+// const sqliteDb = require("./sqlite")
 const mysqlDb = require("./mysql")
 let db
 
