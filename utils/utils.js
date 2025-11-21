@@ -1,7 +1,7 @@
 const axios = require("axios");
 const fs = require("fs");
 const path = require("path");
-const youtubedl = require("youtube-dl-exec");
+// const youtubedl = require("youtube-dl-exec");
 const { logger } = require("../libs/logger");
 
 // Utility function to get extension from MIME type
@@ -70,59 +70,59 @@ async function getStreamFromURL(url = "", pathName = "", options = {}) {
 }
 
 // Enhanced download function with better error handling and format options
-async function downloadWithYoutubeDL(videoUrl, filepath, type = "audio") {
-  return new Promise(async (resolve, reject) => {
-    try {
-      logger.info(`Downloading ${type} with youtube-dl-exec...`);
+// async function downloadWithYoutubeDL(videoUrl, filepath, type = "audio") {
+//   return new Promise(async (resolve, reject) => {
+//     try {
+//       logger.info(`Downloading ${type} with youtube-dl-exec...`);
       
-      // Use the provided filepath directly (should be in tmp directory)
-      const downloadDir = path.dirname(filepath);
-      ensureDir(downloadDir);
+//       // Use the provided filepath directly (should be in tmp directory)
+//       const downloadDir = path.dirname(filepath);
+//       ensureDir(downloadDir);
       
-      let ytdlOptions;
+//       let ytdlOptions;
       
-      if (type === "audio") {
-        ytdlOptions = {
-          output: filepath,
-          format: 'bestaudio[ext=m4a]/bestaudio[ext=mp3]/bestaudio',
-          extractAudio: true,
-          audioFormat: 'm4a',
-          audioQuality: 0,
-          noCheckCertificate: true,
-          preferFreeFormats: true,
-          addHeader: ['referer:youtube.com', 'user-agent:googlebot']
-        };
-      } else {
-        ytdlOptions = {
-          output: filepath,
-          format: 'best[height<=480][ext=mp4]/best[ext=mp4]/best',
-          noCheckCertificate: true,
-          preferFreeFormats: true,
-          addHeader: ['referer:youtube.com', 'user-agent:googlebot']
-        };
-      }
+//       if (type === "audio") {
+//         ytdlOptions = {
+//           output: filepath,
+//           format: 'bestaudio[ext=m4a]/bestaudio[ext=mp3]/bestaudio',
+//           extractAudio: true,
+//           audioFormat: 'm4a',
+//           audioQuality: 0,
+//           noCheckCertificate: true,
+//           preferFreeFormats: true,
+//           addHeader: ['referer:youtube.com', 'user-agent:googlebot']
+//         };
+//       } else {
+//         ytdlOptions = {
+//           output: filepath,
+//           format: 'best[height<=480][ext=mp4]/best[ext=mp4]/best',
+//           noCheckCertificate: true,
+//           preferFreeFormats: true,
+//           addHeader: ['referer:youtube.com', 'user-agent:googlebot']
+//         };
+//       }
       
-      await youtubedl(videoUrl, ytdlOptions);
-      logger.info(`youtube-dl-exec download completed: ${filepath}`);
+//       await youtubedl(videoUrl, ytdlOptions);
+//       logger.info(`youtube-dl-exec download completed: ${filepath}`);
       
-      // Verify file exists and has content
-      if (fs.existsSync(filepath)) {
-        const stats = fs.statSync(filepath);
-        if (stats.size > 0) {
-          resolve('youtube-dl-exec');
-        } else {
-          reject(new Error('Downloaded file is empty'));
-        }
-      } else {
-        reject(new Error('Downloaded file does not exist'));
-      }
+//       // Verify file exists and has content
+//       if (fs.existsSync(filepath)) {
+//         const stats = fs.statSync(filepath);
+//         if (stats.size > 0) {
+//           resolve('youtube-dl-exec');
+//         } else {
+//           reject(new Error('Downloaded file is empty'));
+//         }
+//       } else {
+//         reject(new Error('Downloaded file does not exist'));
+//       }
       
-    } catch (error) {
-          logger.error(`youtube-dl-exec failed: ${error.message}`);
-      reject(error);
-    }
-  });
-}
+//     } catch (error) {
+//           logger.error(`youtube-dl-exec failed: ${error.message}`);
+//       reject(error);
+//     }
+//   });
+// }
 
 // Enhanced sendAttachmentWithText function with retry logic
 async function sendAttachmentWithText(api, jid, attachmentPath, text, type = "image") {
@@ -303,9 +303,9 @@ async function sendMultipleAttachments(api, jid, attachments, type = "image", te
 }
 
 // Enhanced download function with fallback
-async function downloadWithFallback(videoUrl, filepath, type = "audio") {
-  return downloadWithYoutubeDL(videoUrl, filepath, type);
-}
+// async function downloadWithFallback(videoUrl, filepath, type = "audio") {
+//   return downloadWithYoutubeDL(videoUrl, filepath, type);
+// }
 
 // URL validation function for YouTube
 function validateYouTubeURL(url) {
@@ -436,8 +436,8 @@ module.exports = {
   getStreamFromURL,
   sendAttachmentWithText,
   sendMultipleAttachments,
-  downloadWithFallback,
-  downloadWithYoutubeDL,
+  // downloadWithFallback,
+  // downloadWithYoutubeDL,
   validateYouTubeURL,
   ensureDir,
   getDownloadsDir,

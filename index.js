@@ -1,7 +1,7 @@
 /*
 Name: Goat-WhatsApp-Bot
 Description: A WhatsApp bot built with Node.js, designed to automate tasks and provide various functionalities
-Author: Mohammad Alamin & Taseen
+Author: tas33n & alamin
 Version: 1.0.5
 License: MIT
 Repository: https://github.com/tas33n/Goat-WhatsApp-Bot
